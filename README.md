@@ -28,7 +28,9 @@ npm run build
 ## 版本
 
 Apache   2.0
+
 php      8.2.12
+
 mariaDB  10.7
 
 ## 授權條款

@@ -32,8 +32,7 @@
 
 	const Disclaimer = {
 	template:
-		`<div>
-			<rule></rule>						
+		`<div>		
 			<liability></liability>			
 			<terms></terms>			
 			<serveterms></serveterms>
@@ -43,83 +42,36 @@
 	const Home = {
 	template:
 		`<div class="container">
-				
 			<serve></serve>
-				
 			<slogan></slogan>
-				
 		</div>`
 	}
 	
-	const routes = [
-		{
-			path:'/',component:Home
-		},
-		{
-			path:'/home',component:Home
-		},
-		{
-			path:'/about',component:About
-		},
-		{
-			path:'/disclaimer',component:Disclaimer
-		}
-	]
+	const router = VueRouter.createRouter({
+    	history: VueRouter.createWebHashHistory(),
+    	routes : [
+			{ path: '/', component: Home },
+			{ path: '/home', component: Home },
+			{ path: '/about', component: About },
+			{ path: '/disclaimer', component: Disclaimer },
+		],
+  	});
 
-	const router = new VueRouter({
-		routes
-	})
+	const app = Vue.createApp({
+		data() {
+			return {
+					Home: '首頁',
+					About: '關於網站',
+					Disclaimer: '網站聲明',
+				};
+			},
+		methods: {},
+		watch: {},
+		computed: {},
+		mounted() {},
+	});
 
-	Vue.component('rule', {
-		template:  
-		`<div class="container">
-			<div class="container">
-				<div class="center-align">
-					<h3>社群規則</h3>
-				</div>
-				<div class="col s12 m12">
-					<div class="card horizontal">
-						<div class="card-stacked">
-							<div class="card-content">
-								<h5>
-									<blockquote>
-										<table>
-											<thead>
-												<tr>
-													<th data-field="id">規則</th>
-													<th data-field="name">處罰內容</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>禁止侵犯他人著作權</td>
-													<td>封鎖帳號</td>
-												</tr>
-												<tr>
-													<td>禁止任何違法行為</td>
-													<td>封鎖帳號</td>
-												</tr>
-												<tr>
-													<td>禁止發送仇恨、垃圾內容</td>
-													<td>封鎖帳號</td>
-												</tr>
-												<tr>
-													<td>禁止宣傳未授權的任何產品及服務</td>
-													<td>封鎖帳號</td>
-												</tr>
-											</tbody>
-										</table>
-									</blockquote>
-								</h5>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>`
-	})
-
-	Vue.component('liability', {
+	app.component('liability', {
 		template:  
 		`<div class="container">
 			<div class="container">
@@ -145,7 +97,7 @@
 		</div>`
 	})
 	
-	Vue.component('terms', {
+	app.component('terms', {
 		template:  
 		`<div class="container">
 			<div class="container">
@@ -158,7 +110,7 @@
 							<div class="card-content">
 								<h4>
 									<blockquote>
-										為了保障您的權益，請詳細閱讀本網站條款中的所有內容，尤其當您在完成註冊程序後，表示您已同意遵守會員條款的規範，並使用BookStore(本網站)所提供之服務。本站得視必要更新服務條款，不另特別通知。
+										為了保障您的權益，請詳細閱讀本網站條款中的所有內容，尤其當您在完成註冊程序後，表示您已同意遵守會員條款的規範，並使用本網站所提供之服務。本站得視必要更新服務條款，不另特別通知。
 									</blockquote>
 								</h4>
 							</div>
@@ -169,7 +121,7 @@
 		</div>`
 	})
 
-	Vue.component('serveterms', {
+	app.component('serveterms', {
 		template:  
 		`<div class="container">
 			<div class="container">
@@ -184,7 +136,7 @@
 									<blockquote>				                
 										1.使用限制
 										<br>
-										1.1 您使用BookStore(以下稱本網站)必須遵守中華民國法律及網站的相關規定。
+										1.1 您使用本網站必須遵守中華民國法律及網站的相關規定。
 										<br>
 										1.2 您不得利用本網站從事任何非法活動，包括但不限於傳播非法信息、侵犯他人權益等。
 										<br>
@@ -233,23 +185,25 @@
 		</div>`
 	})
 
-	Vue.component('slogan', {
+	app.component('slogan', {
 	  template:  
-		`<div id="slogan">
+		`<div>
 			<div class="row">
 				<div class="center-align col m12">
 					<br>
-					<h2 class="center-align">BookShop</h2>
-					<h5 class="center-align">
-						一個線上書店
-					</h5>
+					<h1 class="center-align"><b>SHOP</b></h1>
+					<h4 class="center-align">
+						<b>
+							一個開源的線上商店應用程式
+						</b>
+					</h4>
 					<br><br>
 				</div>
 			</div>
 		</div>`
 	})
 	
-	Vue.component('serve', {
+	app.component('serve', {
 	  template:  
 		`<div class="row">
 			<h3 class="center-align">主要服務</h3>
@@ -278,7 +232,7 @@
 		</div>`
 	})
 	
-	Vue.component('developer', {
+	app.component('developer', {
 		template:
 		`<div class="row">
 			<h3 class="center-align">開發者相關</h3>
@@ -294,7 +248,7 @@
 							<h4>後端技術:Laravel</h4>
 						</div>
 						<div class="card-action">
-							<a class="waves-effect waves-light btn brown right" herf="https://github.com/Diego09182">Github</a>
+							<a class="waves-effect waves-light btn black right" herf="https://github.com/Diego09182">Github</a>
 						</div>
 					</div>
 				</div>
@@ -302,10 +256,10 @@
 		</div>`
 	  })
 
-	Vue.component('tool', {
+	app.component('tool', {
 	  template:  
 		`<div class="fixed-action-btn horizontal click-to-toggle">
-			<a class="btn-floating btn-large brown">
+			<a class="btn-floating btn-large black">
 				<i class="material-icons">menu</i>
 			</a>
 			<ul>
@@ -313,37 +267,7 @@
 			</ul>
 		</div>`
 	})
-	
-	new Vue({
-			el: '#app',
-			router,
-			data: {
-                Home: '首頁',
-                About: '關於網站',
-				Disclaimer:'免責聲明',
-            },
-			methods:{
-				mounted(){
-					$('.datepicker').datepicker({
-						format: 'yyyy-mm-dd'
-					});
-					$('.fixed-action-btn').floatingActionButton({
-						direction: 'left',
-						hoverEnabled: false
-					});
-					$('.tabs').tabs();
-					$('.parallax').parallax();
-					$('.button-collapse').sidenav();
-					$('.carousel.carousel-slider').carousel({ fullWidth: true });
-					$('.modal').modal();
-					$('.materialboxed').materialbox();
-					$('.tooltipped').tooltip();
-					$('.chips').chips();
-					$('.collapsible').collapsible();
-					$('.carousel').carousel();
-					$('.slider').slider({ fullWidth: true });
-					$('select').formSelect();
-					$('.sidenav').sidenav();
-				}
-			}
-        })
+
+	app.use(router);
+
+	const vm = app.mount('#app');

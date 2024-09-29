@@ -18,7 +18,7 @@
         </div>
         <div class="modal-footer">
             <a class=" modal-action modal-close waves-effect waves-green btn-flat">關閉</a>
-            <button class="waves-effect waves-light btn brown" type="submit">登入</button>
+            <button class="waves-effect waves-light btn black" type="submit">登入</button>
         </div>
     </form>
 </div>

@@ -13,6 +13,6 @@ class HomeController extends Controller
         $user = Auth::user();
 
         // 返回文章列表，並將分頁結果傳遞到視圖
-        return view('BookStore.profile.index', ['user' => $user]);
+        return view('Shop.profile.index', ['user' => $user]);
     }
 }

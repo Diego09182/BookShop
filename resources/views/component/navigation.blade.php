@@ -1,16 +1,16 @@
-<nav class="lighten-1 brown" role="navigation">
+<nav class="lighten-1 black" role="navigation" id="navigation">
     <div class="nav-wrapper container">
         @guest
             <b>
                 <a id="logo-container" href="#" class="brand-logo center">
-                    <router-link to='/home'>BookShop</router-link>
+                    <router-link to='/home'>SHOP</router-link>
                 </a>
             </b>
         @endguest
         @auth
             <b>
                 <a id="logo-container" href="{{ route('product.index')}}" class="brand-logo center">
-                    BookShop
+                    SHOP
                 </a>
             </b>
         @endauth
@@ -29,9 +29,9 @@
         <ul class="right hide-on-med-and-down">
             <b>
                 @auth
-                    <li><a href="{{route('profile.index')}}">個人資訊</a></li>
+                    <li><a href="{{ route('profile.index') }}">個人資訊</a></li>
                     @if(Auth::user()->administration == 5)
-                        <li><a href="{{route('management.index')}}">後台</a></li>
+                        <li><a href="{{ route('management.index') }}">後台</a></li>
                     @endif
                 @endauth
             </b>

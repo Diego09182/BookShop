@@ -15,13 +15,26 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'account' => $this->faker->unique()->userName(),
+            'password' => bcrypt('password'),
+            'avatar' => $this->faker->imageUrl(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'cellphone' => $this->faker->unique()->phoneNumber(),
+            'birthday' => $this->faker->date(),
+            'times' => 0,
+            'administration' => 0,
+            'ip_address' => $this->faker->ipv4(),
+            'business_name' => $this->faker->company(),
+            'business_description' => $this->faker->paragraph(),
+            'product_quantity' => 0,
+            'business_address' => $this->faker->address(),
+            'business_website' => $this->faker->url(),
+            'status' => 1,
             'remember_token' => Str::random(10),
         ];
     }

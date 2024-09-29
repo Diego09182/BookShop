@@ -1,8 +1,8 @@
-<footer class="page-footer brown">
+<footer class="page-footer black">
 	<div class="container">
 	  	<div class="row">
 			<div class="col l6 s12">
-				<h5 class="white-text">開發者:SSSS</h5>
+				<h5 class="white-text">開發者:張皓明</h5>
 				<h5 class="grey-text text-lighten-4">一位初階Laravel開發者</h5>
 			</div>
 			<div class="col l3 s12">
@@ -17,7 +17,7 @@
 	</div>
 	<div class="footer-copyright">
 	  	<div class="container">
-			<p class="center-align">© 2023 <b><a class="white-text">BookShop</a></b></p>
+			<p class="center-align">© 2023 <b><a class="white-text">Shop</a></b></p>
 	  	</div>
 	</div>
 </footer>

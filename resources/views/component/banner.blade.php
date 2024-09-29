@@ -1,12 +1,17 @@
-<div class="section no-pad-bot" id="index-banner">
+<div id="banner" class="section">
 	<div class="container">
 		<br><br>
-		<h1 class="center header-text black-text" id="index-title1" >BookStore</h1>
-		<div class="row center">
-			<h5 class="header col s12 black-text" id="index-title2">線上書店</h5>
-		</div>
-		<div class="row center">
-			<a href="#modal1" id="signbutton" class="btn-large waves-effect waves-light brown modal-trigger">登入</a>
+		<div class="row">
+			<div class="col s12 m6">
+				<img id="LOGO" class="responsive-img" alt="BookShop LOGO" src="{{ asset('images/SHOP.png') }}">
+			</div>
+			<div class="col s12 m6">
+				<h1 class="center black-text"><b>SHOP</b></h1>
+				<h4 class="center black-text"><b>線上商店</b></h4>
+				<br><br><br><br><br><br><br>
+				<a href="#modal1" id="signbutton" class="btn-large waves-effect waves-light modal-trigger black"><b>登入</b></a>
+				<a href="#modal2" id="registerbutton" class="btn-large waves-effect waves-light modal-trigger black"><b>註冊</b></a>
+			</div>
 		</div>
 		<br><br>
 	</div>

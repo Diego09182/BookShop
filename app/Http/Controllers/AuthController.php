@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
+    protected $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     // 處理註冊請求
     public function register(Request $request)
     {
@@ -52,47 +58,39 @@ class AuthController extends Controller
             'business_website.max' => '商家網址長度不能超過255個字',
         ]);
 
-        // 建立使用者並將密碼哈希化
-        $user = User::create([
-            'account' => $validatedData['account'],
-            'password' => Hash::make($validatedData['password']),
-            'email' => $validatedData['email'],
-            'name' => $validatedData['name'],
-            'cellphone' => $validatedData['cellphone'],
-            'birthday' => $validatedData['birthday'],
-            'ip_address' => $request->ip(),
-            'business_name' => $validatedData['business_name'],
-            'business_description' => $validatedData['business_description'],
-            'business_address' => $validatedData['business_address'],
-            'business_website' => $validatedData['business_website'],
-        ]);
+        $user = $this->authService->registerUser($validatedData, $request);
 
-        // 登入使用者
-        Auth::login($user);
-
-        // 註冊成功後的重新導向
-        return redirect()->route('product.index')->with('success', '註冊成功！');
+        if ($user) {
+            Auth::login($user);
+            return redirect()->route('product.index')->with('success', '註冊成功！');
+        } else {
+            return back()->with('error', '註冊失敗，請稍後再試');
+        }
     }
 
     // 處理登入請求
     public function login(Request $request)
     {
-        // 驗證使用者提供的憑證
         $credentials = $request->only('account', 'password');
 
-        if (Auth::attempt($credentials)) {
-            // 登入成功
-            return redirect()->route('product.index')->with('success', '登入成功');
+        $result = $this->authService->login($credentials);
+
+        if ($result['success']) {
+            return redirect()->route('product.index')->with('success', $result['message']);
         } else {
-            // 登入失敗
-            return back()->with('error', '登入失敗，請檢查帳號與密碼');
+            return back()->with('error', $result['message']);
         }
     }
 
     // 處理登出請求
     public function logout()
     {
-        Auth::logout();
-        return redirect()->route('welcome')->with('success', '登出成功');
+        $result = $this->authService->logout();
+
+        if ($result['success']) {
+            return redirect()->route('welcome')->with('success', $result['message']);
+        } else {
+            return back()->with('error', $result['message']);
+        }
     }
 }

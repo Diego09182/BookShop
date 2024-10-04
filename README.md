@@ -6,7 +6,7 @@
 
 ## 安裝
 
-git clone https://github.com/Diego09182/BookShop
+git clone https://github.com/Diego09182/Shop
 
 安裝 composer
 
